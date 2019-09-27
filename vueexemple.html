@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ tit }}</h1>
+        <!-- O v-for vai percorrer o array heroes e salvar cada linha na varial item -->
+        <!-- A variavel keys guarda os indices de cada linha do array heroes -->
+        <div v-for='(item, keys) in heroes'>
+            {{ keys }} - {{ item.nome }}, {{ item.indiv }}, {{ item.escola }}
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data:{
+                tit: 'Heroes',
+                heroes:[
+                    {nome: 'Midorya Izuku', indiv: 'One for All', escola: 'U.A'},
+                    {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
+                    {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
+                    {nome: 'Tokoyami Fumikage', indiv: 'Dark shadow', escola: 'U.A'}
+                ]
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>
