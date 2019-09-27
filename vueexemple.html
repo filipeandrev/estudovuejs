@@ -8,12 +8,41 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ tit }}</h1>
+        <h1>{{ teste }}</h1>
         <!-- O v-for vai percorrer o array heroes e salvar cada linha na varial item -->
         <!-- A variavel keys guarda os indices de cada linha do array heroes -->
         <div v-for='(item, keys) in heroes'>
             {{ keys }} - {{ item.nome }}, {{ item.indiv }}, {{ item.escola }}
         </div>
+        <label for="">Nome</label><br>
+        <input type="text" v-model="nome">
+        <hr><hr>
+        <label for="">Telefone</label><br>
+        <input type="text" v-model="telefone">
+        <hr><hr>
+        <label for="">QUer receber mensagens?</label>br 
+        <input type="radio" value="Sim" v-model='mensagens'>Sim
+        <input type="radio" value="Não" v-model='mensagens'>Não
+        <hr><hr>
+        <label for="">Coisas</label><br>
+        <input type="checkbox" value="pc" v-model='things'>PC <br>
+        <input type="checkbox" value="cell" v-model='things'>Cell <br>
+        <input type="checkbox" value="tele" v-model='things'>Tele <br>
+        <hr><hr>
+        <select name="" id="" v-model="brawlers">
+            <option value="Carl">Carl</option>
+            <option value="Brock">Brock</option>
+            <option value="Bibi">Bibi</option>
+        </select>
+        <hr><hr>
+
+        <ul>
+            <li>Nome: {{ nome }}</li><br>
+            <li>Telefone: {{ telefone }}</li><br>
+            <li>Mensagens: {{ mensagens }}</li><br>
+            <li>Things: {{ things }}</li><br>
+            <li>Brawlers: {{ brawlers }}</li>
+        </ul>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -22,15 +51,17 @@
             el: '#app',
             data:{
                 tit: 'Heroes',
+                nome: '',
+                telefone: '',
+                mensagens: '',
+                things:[],
+                brawlers: '',
                 heroes:[
                     {nome: 'Midorya Izuku', indiv: 'One for All', escola: 'U.A'},
                     {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
                     {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
                     {nome: 'Tokoyami Fumikage', indiv: 'Dark shadow', escola: 'U.A'}
                 ]
-            },
-            methods:{
-                
             }
         })
     </script>
