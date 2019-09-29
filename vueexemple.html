@@ -8,44 +8,66 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ teste }}</h1>
+        <h1>{{ tit }}</h1>
         <!-- O v-for vai percorrer o array heroes e salvar cada linha na varial item -->
         <!-- A variavel keys guarda os indices de cada linha do array heroes -->
-        <div v-for='(item, keys) in heroes'>
-            {{ keys }} - {{ item.nome }}, {{ item.indiv }}, {{ item.escola }}
-        </div>
+        <table>
+            <tr v-for='(item, keys) in heroes'>
+                <!-- <td>
+                    {{ keys }} - {{ item.nome }}, {{ item.indiv }}, {{ item.escola }}
+                </td> -->
+                <td>{{ keys }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.indiv }}</td>
+                <td>{{ item.escola }}</td>
+            </tr>
+        </table>
+
+        <input type="text" v-model='warn'>
+        <p>{{ warn }}</p>
+        <a href="#" v-on:click='twarn'>Click para inverter a mensagem</a>
+        <!-- <div v-for='(item, keys) in heroes'>
+        </div> -->
+        <hr><hr>
         <label for="">Nome</label><br>
         <input type="text" v-model="nome">
         <hr><hr>
         <label for="">Telefone</label><br>
         <input type="text" v-model="telefone">
         <hr><hr>
-        <label for="">QUer receber mensagens?</label>br 
-        <input type="radio" value="Sim" v-model='mensagens'>Sim
-        <input type="radio" value="Não" v-model='mensagens'>Não
+        <label for="">Quem é o melhor herói?</label><br>
+        <input type="radio" value="Midorya" v-model='hero'>Midorya
+        <input type="radio" value="Bakugou" v-model='hero'>Bakugou
+        <input type="radio" value="Todoroki" v-model='hero'>Todoroki
         <hr><hr>
-        <label for="">Coisas</label><br>
-        <input type="checkbox" value="pc" v-model='things'>PC <br>
-        <input type="checkbox" value="cell" v-model='things'>Cell <br>
-        <input type="checkbox" value="tele" v-model='things'>Tele <br>
+        <label for="">Individualidades</label><br>
+        <input type="checkbox" value="One for All" v-model='indivi'>One for All <br>
+        <input type="checkbox" value="Explosão" v-model='indivi'>Explosão <br>
+        <input type="checkbox" value="Meio frio, meio quente" v-model='indivi'>Meio frio, meio quente <br>
         <hr><hr>
         <select name="" id="" v-model="brawlers">
-            <option value="Carl">Carl</option>
-            <option value="Brock">Brock</option>
-            <option value="Bibi">Bibi</option>
+            <option value="Izuku">Izuku</option>
+            <option value="Katsuki">Katsuki</option>
+            <option value="Shouto">Shouto</option>
         </select>
         <hr><hr>
 
         <ul>
             <li>Nome: {{ nome }}</li><br>
             <li>Telefone: {{ telefone }}</li><br>
-            <li>Mensagens: {{ mensagens }}</li><br>
-            <li>Things: {{ things }}</li><br>
+            <li>Heroes: {{ hero }}</li><br>
+            <li>Individualidades: {{ indivi }}</li><br>
             <li>Brawlers: {{ brawlers }}</li>
         </ul>
+
+        <span v-bind:title="message">
+            Pare o mouse sobre mim e veja a dica interligada dinamicamente!
+        </span>
+        <h1 v-if='seen'>Titulo mostrado</h1>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
     <script>
         let app = new Vue({
             el: '#app',
@@ -53,15 +75,23 @@
                 tit: 'Heroes',
                 nome: '',
                 telefone: '',
-                mensagens: '',
-                things:[],
+                hero: '',
+                indivi:[],
                 brawlers: '',
+                message: 'Voçê carregou esta página em ' + new Date().toLocaleString(),
+                seen: false,
+                warn: '',
                 heroes:[
                     {nome: 'Midorya Izuku', indiv: 'One for All', escola: 'U.A'},
-                    {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
-                    {nome: 'Midorya Izuku', indiv: 'Pne for All', escola: 'U.A'},
+                    {nome: 'Balugou Katsuki', indiv: 'Explosão', escola: 'U.A'},
+                    {nome: 'Todoroki Shouto', indiv: 'Meio frio, meio quente', escola: 'U.A'},
                     {nome: 'Tokoyami Fumikage', indiv: 'Dark shadow', escola: 'U.A'}
                 ]
+            },
+            methods:{
+                twarn: function(){
+                    this.warn = this.warn.split('').reverse().join('')
+                }
             }
         })
     </script>
