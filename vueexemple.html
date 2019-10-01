@@ -9,6 +9,13 @@
 <body>
     <div id="app">
         <h1>{{ tit }}</h1>
+        <h1>Adicione um herói</h1>
+        <form action="#">
+            <input type="text" v-model='hero'>{{ hero }} <br>
+            <input type="text" v-model='tecni'>{{ tecni }} <br>
+            <input type="text" v-model='esco'>{{ esco }} <br>
+            <input type="submit" v-on:click='colocar'>
+        </form>
         <!-- O v-for vai percorrer o array heroes e salvar cada linha na varial item -->
         <!-- A variavel keys guarda os indices de cada linha do array heroes -->
         <table>
@@ -57,13 +64,20 @@
             <li>Telefone: {{ telefone }}</li><br>
             <li>Heroes: {{ hero }}</li><br>
             <li>Individualidades: {{ indivi }}</li><br>
-            <li>Brawlers: {{ brawlers }}</li>
+            <li>Brawlers: {{ brawlers }}</li><br>
+            <li>teste: {{ matr }}</li>
         </ul>
+        {{ msg }}
 
         <span v-bind:title="message">
             Pare o mouse sobre mim e veja a dica interligada dinamicamente!
         </span>
         <h1 v-if='seen'>Titulo mostrado</h1>
+        <hr><hr>
+        <form action="#">
+            <input type="text" v-model='msg'><br>
+            <input type="submit" v-on:click='escreve'>
+        </form>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -72,7 +86,7 @@
         let app = new Vue({
             el: '#app',
             data:{
-                tit: 'Heroes',
+                tit: 'Heróis de Boku no Hero',
                 nome: '',
                 telefone: '',
                 hero: '',
@@ -81,6 +95,11 @@
                 message: 'Voçê carregou esta página em ' + new Date().toLocaleString(),
                 seen: false,
                 warn: '',
+                msg:'',
+                matr:[],
+                hero:'',
+                tecni:'',
+                esco:'',
                 heroes:[
                     {nome: 'Midorya Izuku', indiv: 'One for All', escola: 'U.A'},
                     {nome: 'Balugou Katsuki', indiv: 'Explosão', escola: 'U.A'},
@@ -88,9 +107,18 @@
                     {nome: 'Tokoyami Fumikage', indiv: 'Dark shadow', escola: 'U.A'}
                 ]
             },
+            //função que que inverte a ordem das letras de uma mensagem
             methods:{
                 twarn: function(){
                     this.warn = this.warn.split('').reverse().join('')
+                },
+                //função que adiciona o que está na variavel msg ao array matr
+                escreve: function(){
+                    this.matr.push(this.msg)
+                },
+                //função que adiciona um novo elemento a atabela de heróis
+                colocar: function(){
+                    app.heroes.push({nome:  this.hero + '', indiv: this.tecni + '', escola: this.esco + ''})
                 }
             }
         })
